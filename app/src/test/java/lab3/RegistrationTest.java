@@ -32,6 +32,9 @@ public class RegistrationTest {
                 .withTimeout(Duration.ofSeconds(5))
                 .pollingEvery(Duration.ofSeconds(3))
                 .ignoring(NoSuchElementException.class);
+
+        driver.get("https://xtool.ru/");
+        driver.manage().window().setSize(new Dimension(1876, 1080));
     }
     @After
     public void tearDown() {
@@ -39,9 +42,6 @@ public class RegistrationTest {
     }
     @Test
     public void registration()  {
-        driver.get("https://xtool.ru/");
-        driver.manage().window().setSize(new Dimension(1876, 1080));
-
         WebElement registerBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/a[1]"));
         js.executeScript("arguments[0].click();", registerBtn);
 

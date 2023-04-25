@@ -14,11 +14,10 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 
-import java.sql.Driver;
 import java.time.Duration;
 import java.util.*;
 
-public class LoginTest {
+public class LogoutTest {
     private WebDriver driver;
     Wait<WebDriver> wait;
     JavascriptExecutor js;
@@ -29,10 +28,6 @@ public class LoginTest {
         driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         js = (JavascriptExecutor) driver;
-        wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(NoSuchElementException.class);
 
         driver.get("https://xtool.ru/");
         driver.manage().window().setSize(new Dimension(1876, 1080));
@@ -42,7 +37,7 @@ public class LoginTest {
         driver.quit();
     }
     @Test
-    public void login()  {
+    public void logout()  {
         WebElement loginBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/a[2]"));
         js.executeScript("arguments[0].click();", loginBtn);
 
@@ -55,8 +50,13 @@ public class LoginTest {
         WebElement enterBtn = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[2]/button[2]"));
         js.executeScript("arguments[0].click();", enterBtn);
 
-        WebElement accountEmail = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[1]/div"));
+        WebElement accountBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a"));
+        js.executeScript("arguments[0].click();", accountBtn);
 
-        Assert.assertEquals(accountEmail.getText(), "callmepedro@yandex.ru");
+        WebElement logoutBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a"));
+        js.executeScript("arguments[0].click();", logoutBtn);
+
+        WebElement regBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/a[1]"));
+        Assert.assertTrue(regBtn.isDisplayed());
     }
 }
