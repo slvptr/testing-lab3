@@ -35,19 +35,14 @@ public class TrustStandartTest {
     driver.quit();
   }
   @Test
-  public void trustStandart() throws InterruptedException {
+  public void trustStandart()  {
     driver.get("https://xtool.ru/");
     driver.manage().window().setSize(new Dimension(1876, 1080));
-    JavascriptExecutor js = (JavascriptExecutor) driver;
 
     WebElement inputElement = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
     inputElement.sendKeys("https://www.tune-it.ru/");
 
-    WebElement pagerankCheckbox = driver.findElement(By.xpath("/html/body/main/div[1]/div[3]/div[2]/input"));
-    js.executeScript("arguments[0].click();", pagerankCheckbox);
-
     WebElement searchBtn = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
     js.executeScript("arguments[0].click();", searchBtn);
-
   }
 }

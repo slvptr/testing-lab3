@@ -29,11 +29,14 @@ public class TrustPagerankTest {
   public void trustPagerank() {
     driver.get("https://xtool.ru/");
     driver.manage().window().setSize(new Dimension(1876, 1080));
+
     WebElement inputElement = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
     inputElement.sendKeys("https://www.tune-it.ru/");
 
-    driver.findElement(By.xpath("//main/div/form/div/input")).click();
-    driver.findElement(By.xpath("//main/div/form/div/input")).sendKeys("https://www.tune-it.ru/");
-    driver.findElement(By.xpath("//main/div/form/div/button")).click();
+    WebElement pagerankCheckbox = driver.findElement(By.xpath("/html/body/main/div[1]/div[3]/div[2]/input"));
+    js.executeScript("arguments[0].click();", pagerankCheckbox);
+
+    WebElement searchBtn = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
+    js.executeScript("arguments[0].click();", searchBtn);
   }
 }
