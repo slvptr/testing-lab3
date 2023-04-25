@@ -17,6 +17,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 import java.util.*;
@@ -29,7 +31,7 @@ public class TrustStandartTest {
   @Before
   public void setUp() {
     driver = new ChromeDriver();
-    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
@@ -38,13 +40,14 @@ public class TrustStandartTest {
     driver.quit();
   }
   @Test
-  public void trustStandart() {
+  public void trustStandart() throws InterruptedException {
     driver.get("https://xtool.ru/");
     driver.manage().window().setSize(new Dimension(1876, 1080));
-    WebElement inputElement = driver.findElement(By.xpath("//main/div/form/div/input"));
+    WebElement inputElement = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
     inputElement.sendKeys("https://www.tune-it.ru/");
 
     WebElement searchBtn = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
+    Thread.sleep(500);
     searchBtn.click();
   }
 }
