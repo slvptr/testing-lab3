@@ -1,0 +1,235 @@
+{
+  "id": "523f4d75-1810-41ef-b1db-a9a8bfc3ca4c",
+  "version": "2.0",
+  "name": "lab3",
+  "url": "https://xtool.ru",
+  "tests": [{
+    "id": "52f864f0-169d-4424-a30f-c9678282b734",
+    "name": "TrustSearch",
+    "commands": [{
+      "id": "9a01d97f-dff3-436c-aef3-be6e13d1e5ba",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3e14853b-31b4-479f-9756-15e342d194d9",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1876x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "e295c8c8-ffd8-4fc8-bb94-3656f300deff",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//main/div/form/div/input",
+      "targets": [
+        ["id=url", "id"],
+        ["name=site", "name"],
+        ["css=#url", "css:finder"],
+        ["xpath=//input[@id='url']", "xpath:attributes"],
+        ["xpath=//form[@id='analyze-form']/div/input", "xpath:idRelative"],
+        ["xpath=//main/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "443fa3c7-4c86-4a54-89af-4bc954c5e3b8",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//main/div/form/div/input",
+      "targets": [
+        ["id=url", "id"],
+        ["name=site", "name"],
+        ["css=#url", "css:finder"],
+        ["xpath=//input[@id='url']", "xpath:attributes"],
+        ["xpath=//form[@id='analyze-form']/div/input", "xpath:idRelative"],
+        ["xpath=//main/div/form/div/input", "xpath:position"]
+      ],
+      "value": "https://www.tune-it.ru/"
+    }, {
+      "id": "21046617-fcc8-4a56-8c94-932b44a9159d",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Проверить')]",
+      "targets": [
+        ["id=check-submit", "id"],
+        ["css=#check-submit", "css:finder"],
+        ["xpath=//button[@id='check-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='analyze-form']/div/button", "xpath:idRelative"],
+        ["xpath=//main/div/form/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Проверить')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "62e306d9-ff72-4e0f-93ba-8a4d7b5b212a",
+    "name": "TrustPagerankSearch",
+    "commands": [{
+      "id": "9904e60d-0f43-4dd9-b865-43f2cc773525",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28338266-ce59-4633-9ec6-1e79b93c565a",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1876x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c35211e1-77cf-45c1-83a9-604af99a5722",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[2]/input",
+      "targets": [
+        ["id=ra-2", "id"],
+        ["css=#ra-2", "css:finder"],
+        ["xpath=//input[@id='ra-2']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b610ea13-f7b4-4208-a100-78544eed95c9",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//main/div/form/div/input",
+      "targets": [
+        ["id=url", "id"],
+        ["name=site", "name"],
+        ["css=#url", "css:finder"],
+        ["xpath=//input[@id='url']", "xpath:attributes"],
+        ["xpath=//form[@id='analyze-form']/div/input", "xpath:idRelative"],
+        ["xpath=//main/div/form/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2718019d-4977-4fa3-bc5f-2197e6480fdc",
+      "comment": "",
+      "command": "type",
+      "target": "xpath=//main/div/form/div/input",
+      "targets": [
+        ["id=url", "id"],
+        ["name=site", "name"],
+        ["css=#url", "css:finder"],
+        ["xpath=//input[@id='url']", "xpath:attributes"],
+        ["xpath=//form[@id='analyze-form']/div/input", "xpath:idRelative"],
+        ["xpath=//main/div/form/div/input", "xpath:position"]
+      ],
+      "value": "https://www.tune-it.ru/"
+    }, {
+      "id": "62348ac3-3c80-4e2c-8c47-81befdec9742",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//button[contains(.,'Проверить')]",
+      "targets": [
+        ["id=check-submit", "id"],
+        ["css=#check-submit", "css:finder"],
+        ["xpath=//button[@id='check-submit']", "xpath:attributes"],
+        ["xpath=//form[@id='analyze-form']/div/button", "xpath:idRelative"],
+        ["xpath=//main/div/form/div/button", "xpath:position"],
+        ["xpath=//button[contains(.,'Проверить')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "5aaffd96-cab3-4754-81ca-960b3ef408e7",
+    "name": "Registration",
+    "commands": [{
+      "id": "e697c7b4-79c5-4dfd-9a84-e8aee3e18e3c",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a77359e8-0acb-4d34-bd51-f5559e8bb207",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1876x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3baf2390-831a-476f-9aba-fcfd8e554e76",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//div[2]/a",
+      "targets": [
+        ["linkText=Регистрация", "linkText"],
+        ["css=.btn-outline-dark:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'Регистрация')]", "xpath:link"],
+        ["xpath=//div[@id='myNavbar']/div[2]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '//xtool.ru/registration/')]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,' Регистрация')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0fcf2e09-7e63-4639-a90e-51be2f396e9a",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.form-control:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form-registration']/table/tbody/tr/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86c7832c-2505-427f-aa9e-5267d5cdc0d1",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.form-control:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//form[@id='form-registration']/table/tbody/tr/td/input", "xpath:idRelative"],
+        ["xpath=//td/input", "xpath:position"]
+      ],
+      "value": "callmepedro@yandex.ru"
+    }, {
+      "id": "8d935adf-e223-4d05-bc10-12f377d2cbb9",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//form/input",
+      "targets": [
+        ["id=rules", "id"],
+        ["name=rules", "name"],
+        ["css=#rules", "css:finder"],
+        ["xpath=//input[@id='rules']", "xpath:attributes"],
+        ["xpath=//form[@id='form-registration']/input", "xpath:idRelative"],
+        ["xpath=//form/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9844ef02-78c5-42e4-a6b4-eb393fe20752",
+      "comment": "",
+      "command": "click",
+      "target": "xpath=//form/input[2]",
+      "targets": [
+        ["id=btn_reg", "id"],
+        ["css=#btn_reg", "css:finder"],
+        ["xpath=//input[@id='btn_reg']", "xpath:attributes"],
+        ["xpath=//form[@id='form-registration']/input[2]", "xpath:idRelative"],
+        ["xpath=//form/input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "8c8c5eae-ec51-4ad5-ba0d-6c604e2aa220",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["52f864f0-169d-4424-a30f-c9678282b734"]
+  }],
+  "urls": ["https://xtool.ru/"],
+  "plugins": []
+}
