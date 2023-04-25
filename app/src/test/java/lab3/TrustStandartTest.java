@@ -11,6 +11,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
 
 
 import java.time.Duration;
@@ -24,6 +25,8 @@ public class TrustStandartTest {
   public void setUp() {
     driver = new ChromeDriver();
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
+    driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
@@ -35,11 +38,16 @@ public class TrustStandartTest {
   public void trustStandart() throws InterruptedException {
     driver.get("https://xtool.ru/");
     driver.manage().window().setSize(new Dimension(1876, 1080));
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+
     WebElement inputElement = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
     inputElement.sendKeys("https://www.tune-it.ru/");
 
+    WebElement pagerankCheckbox = driver.findElement(By.xpath("/html/body/main/div[1]/div[3]/div[2]/input"));
+    js.executeScript("arguments[0].click();", pagerankCheckbox);
+
     WebElement searchBtn = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
-    Thread.sleep(500);
-    searchBtn.click();
+    js.executeScript("arguments[0].click();", searchBtn);
+
   }
 }
