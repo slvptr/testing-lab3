@@ -39,7 +39,7 @@ public class TrustStandartTest {
     inputElement.sendKeys("https://www.tune-it.ru/");
 
     WebElement searchBtn = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
-    Thread.sleep(500);
+    Thread.sleep(1000);
     searchBtn.click();
   }
 }

@@ -18,7 +18,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-api', version: '4.9.0'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.9.0'
-
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-firefox-driver', version: '3.5.3'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-support', version: '2.37.1'
     implementation 'com.google.guava:guava:31.1-jre'
 }
 
