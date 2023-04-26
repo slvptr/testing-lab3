@@ -65,6 +65,8 @@ public class LogoutTest {
         WebElement accountBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a"));
         js.executeScript("arguments[0].click();", accountBtn);
 
+        Thread.sleep(500);
+
         WebElement logoutBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a"));
         js.executeScript("arguments[0].click();", logoutBtn);
 

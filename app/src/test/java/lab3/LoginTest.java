@@ -8,6 +8,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
@@ -19,28 +20,38 @@ import java.time.Duration;
 import java.util.*;
 
 public class LoginTest {
-    private WebDriver driver;
-    JavascriptExecutor js;
+    private WebDriver chromeDriver, firefoxDriver;
+    JavascriptExecutor jsChrome, jsFirefox;
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        js = (JavascriptExecutor) driver;
+        chromeDriver = new ChromeDriver();
+        chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
+        firefoxDriver = new FirefoxDriver();
+        firefoxDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
-        driver.get("https://xtool.ru/");
-        driver.manage().window().setSize(new Dimension(1876, 1080));
+        jsChrome = (JavascriptExecutor) chromeDriver;
+        jsFirefox = (JavascriptExecutor) firefoxDriver;
     }
     @After
     public void tearDown() {
-        driver.quit();
+        chromeDriver.quit();
+        firefoxDriver.quit();
     }
     @Test
-    public void login()  {
+    public void logout() throws InterruptedException {
+        test(firefoxDriver, jsFirefox);
+        test(chromeDriver, jsChrome);
+    }
+
+    public void test(WebDriver driver, JavascriptExecutor js) throws InterruptedException {
+        driver.get("https://xtool.ru/");
+        driver.manage().window().setSize(new Dimension(1876, 1080));
+
         WebElement loginBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/a[2]"));
         js.executeScript("arguments[0].click();", loginBtn);
+
+        Thread.sleep(500);
 
         WebElement emailInput = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[1]/input[1]"));
         emailInput.sendKeys("callmepedro@yandex.ru");
