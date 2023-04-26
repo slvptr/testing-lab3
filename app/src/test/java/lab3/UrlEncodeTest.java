@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
-public class MD5Test {
+public class UrlEncodeTest {
     private WebDriver chromeDriver, firefoxDriver;
     JavascriptExecutor jsChrome, jsFirefox;
     Wait<WebDriver> waitChrome, waitFirefox;
@@ -70,20 +70,26 @@ public class MD5Test {
                 .visibilityOfElementLocated(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a")));
         driver.navigate().to("https://xtool.ru/");
 
-
-        WebElement inputElement =  wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("/html/body/main/section[3]/div/div/div[2]/article/a")));
+        WebElement inputElement = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/main/section[3]/div/div/div[5]/article/a")));
         js.executeScript("arguments[0].click();", inputElement);
 
-        WebElement textarea = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[1]/form/textarea"));
-        textarea.sendKeys("yesyesyes");
+        WebElement encodeTextarea = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[1]/div[2]/input"));
+        WebElement decodeTextarea = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[2]/div[2]/input"));
+        encodeTextarea.sendKeys("https://xtool.ru/php-online/urlencode_decode/");
 
-        WebElement submitBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[1]/form/button"));
-        js.executeScript("arguments[0].click();", submitBtn);
+        WebElement encodeBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[1]/div[3]/button"));
+        WebElement decodeBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[2]/div[1]/button"));
+        js.executeScript("arguments[0].click();", encodeBtn);
 
         Thread.sleep(500);
 
-        WebElement result = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[2]/form/div"));
-        Assert.assertEquals("c946739aa8e0f1008c32e311076f355f", result.getText());
+        Assert.assertEquals(decodeTextarea.getAttribute("value"), "https%3A%2F%2Fxtool.ru%2Fphp-online%2Furlencode_decode%2F");
+        encodeTextarea.clear();
+        js.executeScript("arguments[0].click();", decodeBtn);
+
+        Thread.sleep(500);
+
+        Assert.assertEquals(encodeTextarea.getAttribute("value"), "https://xtool.ru/php-online/urlencode_decode/");
     }
 }

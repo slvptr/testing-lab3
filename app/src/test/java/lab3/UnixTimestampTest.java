@@ -9,11 +9,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
-public class MD5Test {
+public class UnixTimestampTest {
     private WebDriver chromeDriver, firefoxDriver;
     JavascriptExecutor jsChrome, jsFirefox;
     Wait<WebDriver> waitChrome, waitFirefox;
@@ -44,7 +45,7 @@ public class MD5Test {
         firefoxDriver.quit();
     }
     @Test
-    public void md5() throws InterruptedException {
+    public void jsonDecode() throws InterruptedException {
         test(firefoxDriver, jsFirefox, waitFirefox);
         test(chromeDriver, jsChrome, waitChrome);
     }
@@ -70,20 +71,32 @@ public class MD5Test {
                 .visibilityOfElementLocated(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a")));
         driver.navigate().to("https://xtool.ru/");
 
-
-        WebElement inputElement =  wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("/html/body/main/section[3]/div/div/div[2]/article/a")));
+        WebElement inputElement = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/main/section[3]/div/div/div[8]/article/a")));
         js.executeScript("arguments[0].click();", inputElement);
 
-        WebElement textarea = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[1]/form/textarea"));
-        textarea.sendKeys("yesyesyes");
 
-        WebElement submitBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[1]/form/button"));
-        js.executeScript("arguments[0].click();", submitBtn);
+        WebElement toFormat = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[1]/div/input")));
+        toFormat.clear();
+        toFormat.sendKeys("4201337228");
 
+        Select dateSelect = new Select(wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[2]/div[2]/select"))));
+        dateSelect.selectByVisibleText("Y-m-dTH:i:s±h:m (ISO 8601)");
+
+
+        WebElement convertTimestampBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[1]/button"));
+        WebElement convertTimeBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[2]/button"));
+        js.executeScript("arguments[0].click();", convertTimestampBtn);
+
+        WebElement formatted = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/main/div/div[2]/div[2]/div/form[2]/div[1]/input")));
+        Assert.assertEquals(formatted.getAttribute("value"), "2103-02-19T17:07:08+03:00");
+
+        toFormat.clear();
+        js.executeScript("arguments[0].click();", convertTimeBtn);
         Thread.sleep(500);
-
-        WebElement result = driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[2]/form/div"));
-        Assert.assertEquals("c946739aa8e0f1008c32e311076f355f", result.getText());
+        Assert.assertEquals(toFormat.getAttribute("value"), "4201337228");
     }
 }

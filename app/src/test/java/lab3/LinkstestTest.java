@@ -60,23 +60,23 @@ public class LinkstestTest {
     driver.manage().window().setSize(new Dimension(1936, 1056));
     
     WebElement link1 = driver.findElement(By.xpath("//a[2]"));
-    Thread.sleep(2000);
     js.executeScript("arguments[0].click();", link1);
+    Thread.sleep(500);
     Assert.assertTrue(driver.getCurrentUrl().startsWith("https://xtool.ru/backlinks"));
 
     WebElement link2 = driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li/a"));
-    Thread.sleep(2000);
     js.executeScript("arguments[0].click();", link2);
+    Thread.sleep(500);
     Assert.assertTrue(driver.getCurrentUrl().startsWith("https://xtool.ru/backlinks"));
 
     WebElement link3 = driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li[2]/a"));
-    Thread.sleep(2000);
     js.executeScript("arguments[0].click();", link3);
+    Thread.sleep(500);
     Assert.assertTrue(driver.getCurrentUrl().startsWith("https://xtool.ru/backlinks"));
 
     WebElement link4 = driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li[3]/a"));
-    Thread.sleep(2000);
     js.executeScript("arguments[0].click();", link4);
+    Thread.sleep(500);
     Assert.assertTrue(driver.getCurrentUrl().startsWith("https://xtool.ru/backlinks"));
 
   }
