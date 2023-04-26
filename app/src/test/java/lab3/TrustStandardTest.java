@@ -39,18 +39,20 @@ public class TrustStandardTest {
   @Test
   public void trustStandard() throws InterruptedException {
     test(chromeDriver, jsChrome);
+    test(firefoxDriver, jsFirefox);
   }
 
   public void test(WebDriver driver, JavascriptExecutor js) {
     driver.get("https://xtool.ru/");
     driver.manage().window().setSize(new Dimension(1876, 1080));
-    WebElement inputElement = firefoxDriver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
+
+    WebElement inputElement = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
     inputElement.sendKeys("https://www.tune-it.ru/");
 
-    WebElement searchBtn = firefoxDriver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
+    WebElement searchBtn = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/button"));
     js.executeScript("arguments[0].click();", searchBtn);
 
-    WebElement siteUrl= firefoxDriver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[1]/div[2]/span"));
+    WebElement siteUrl= driver.findElement(By.xpath("/html/body/main/div/div[2]/div[2]/div[1]/div[2]/div/div[2]/div[1]/div[2]/span"));
     Assert.assertEquals(siteUrl.getText(), "www.tune-it.ru");
   }
 

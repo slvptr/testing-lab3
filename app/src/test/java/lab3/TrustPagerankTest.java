@@ -9,25 +9,39 @@ import static org.hamcrest.core.IsNot.not;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
 import java.util.*;
 
 public class TrustPagerankTest {
-  private WebDriver driver;
-  JavascriptExecutor js;
+  private WebDriver chromeDriver, firefoxDriver;
+  JavascriptExecutor jsChrome, jsFirefox;
   @Before
   public void setUp() {
-    driver = new ChromeDriver();
-    js = (JavascriptExecutor) driver;
-    driver.get("https://xtool.ru/");
-    driver.manage().window().setSize(new Dimension(1876, 1080));
+    chromeDriver = new ChromeDriver();
+    chromeDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+    firefoxDriver = new FirefoxDriver();
+    firefoxDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+
+    jsChrome = (JavascriptExecutor) chromeDriver;
+    jsFirefox = (JavascriptExecutor) firefoxDriver;
   }
   @After
   public void tearDown() {
-    driver.quit();
+    chromeDriver.quit();
+    firefoxDriver.quit();
   }
   @Test
   public void trustPagerank() {
+    test(chromeDriver, jsChrome);
+    test(firefoxDriver, jsFirefox);
+  }
+
+  public void test(WebDriver driver, JavascriptExecutor js) {
+    driver.get("https://xtool.ru/");
+    driver.manage().window().setSize(new Dimension(1876, 1080));
 
     WebElement inputElement = driver.findElement(By.xpath("/html/body/main/div[1]/form/div/input"));
     inputElement.sendKeys("https://www.tune-it.ru/");
