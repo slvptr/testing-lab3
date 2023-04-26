@@ -20,7 +20,6 @@ import java.util.*;
 
 public class LoginTest {
     private WebDriver driver;
-    Wait<WebDriver> wait;
     JavascriptExecutor js;
     @Before
     public void setUp() {
@@ -29,10 +28,7 @@ public class LoginTest {
         driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         js = (JavascriptExecutor) driver;
-        wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(5))
-                .pollingEvery(Duration.ofSeconds(3))
-                .ignoring(NoSuchElementException.class);
+
 
         driver.get("https://xtool.ru/");
         driver.manage().window().setSize(new Dimension(1876, 1080));
