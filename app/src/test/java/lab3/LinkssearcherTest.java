@@ -34,6 +34,8 @@ public class LinkssearcherTest {
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
+    driver.get("https://xtool.ru/");
+    driver.manage().window().setSize(new Dimension(1936, 1056));
   }
   @After
   public void tearDown() {
@@ -41,22 +43,39 @@ public class LinkssearcherTest {
   }
   @Test
   public void linkssearcher() {
-    driver.get("https://xtool.ru/");
-    driver.manage().window().setSize(new Dimension(1936, 1056));
-    driver.findElement(By.xpath("//a[2]")).click();
-    driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li[3]")).click();
-    driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li[3]/a")).click();
-    driver.findElement(By.xpath("//p[2]/input")).click();
+
+    WebElement link1 = driver.findElement(By.xpath("//a[2]"));
+    js.executeScript("arguments[0].click();", link1);
+
+    WebElement link2 = driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li[3]"));
+    js.executeScript("arguments[0].click();", link2);
+
+    WebElement link3 = driver.findElement(By.xpath("//div[2]/div[2]/div/ul/li[3]/a"));
+    js.executeScript("arguments[0].click();", link3);
+
+    WebElement link4 = driver.findElement(By.xpath("//p[2]/input"));
+    js.executeScript("arguments[0].click();", link4);
+
     driver.findElement(By.xpath("//p[2]/input")).sendKeys("https://www.tune-it.ru");
-    driver.findElement(By.xpath("//textarea")).click();
-    driver.findElement(By.xpath("//main/div")).click();
+
+    WebElement link5 = driver.findElement(By.xpath("//textarea"));
+    js.executeScript("arguments[0].click();", link5);
+
+    WebElement link6 = driver.findElement(By.xpath("//main/div"));
+    js.executeScript("arguments[0].click();", link6);
+
     {
       WebElement element = driver.findElement(By.xpath("//div[3]/div/a"));
       Actions builder = new Actions(driver);
       builder.moveToElement(element).perform();
     }
+
     driver.findElement(By.xpath("//textarea")).click();
+
+
     driver.findElement(By.xpath("//textarea")).sendKeys("https://www.tune-it.ru");
+
     driver.findElement(By.xpath("//p[4]/button")).click();
+    
   }
 }
