@@ -21,6 +21,8 @@ import java.util.*;
 public class LogoutTest {
     private WebDriver chromeDriver, firefoxDriver;
     JavascriptExecutor jsChrome, jsFirefox;
+    Wait<WebDriver> waitChrome, waitFirefox;
+
     @Before
     public void setUp() {
         chromeDriver = new ChromeDriver();
@@ -31,6 +33,15 @@ public class LogoutTest {
 
         jsChrome = (JavascriptExecutor) chromeDriver;
         jsFirefox = (JavascriptExecutor) firefoxDriver;
+
+        waitChrome = new FluentWait<WebDriver>(chromeDriver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(NoSuchElementException.class);
+        waitFirefox = new FluentWait<WebDriver>(firefoxDriver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(3))
+                .ignoring(NoSuchElementException.class);
     }
     @After
     public void tearDown() {
@@ -39,19 +50,18 @@ public class LogoutTest {
     }
     @Test
     public void logout() throws InterruptedException {
-        test(firefoxDriver, jsFirefox);
-        test(chromeDriver, jsChrome);
+        test(firefoxDriver, jsFirefox, waitFirefox);
+        test(chromeDriver, jsChrome, waitChrome);
     }
-    public void test(WebDriver driver, JavascriptExecutor js) throws InterruptedException {
+    public void test(WebDriver driver, JavascriptExecutor js, Wait<WebDriver> wait) throws InterruptedException {
         driver.get("https://xtool.ru/");
         driver.manage().window().setSize(new Dimension(1876, 1080));
 
         WebElement loginBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/a[2]"));
         js.executeScript("arguments[0].click();", loginBtn);
 
-        Thread.sleep(500);
-
-        WebElement emailInput = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[1]/input[1]"));
+        WebElement emailInput =  wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/div[1]/div/div/form/div[1]/input[1]")));
         emailInput.sendKeys("callmepedro@yandex.ru");
 
         WebElement passwordInput = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[1]/input[2]"));
@@ -60,14 +70,12 @@ public class LogoutTest {
         WebElement enterBtn = driver.findElement(By.xpath("/html/body/div[1]/div/div/form/div[2]/button[2]"));
         js.executeScript("arguments[0].click();", enterBtn);
 
-        Thread.sleep(500);
-
-        WebElement accountBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a"));
+        WebElement accountBtn =  wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a")));
         js.executeScript("arguments[0].click();", accountBtn);
 
-        Thread.sleep(500);
-
-        WebElement logoutBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a"));
+        WebElement logoutBtn =  wait.until(ExpectedConditions
+                .elementToBeClickable(By.xpath("/html/body/nav/div/div/div[2]/div/div[2]/div[2]/a")));
         js.executeScript("arguments[0].click();", logoutBtn);
 
         WebElement regBtn = driver.findElement(By.xpath("/html/body/nav/div/div/div[2]/a[1]"));

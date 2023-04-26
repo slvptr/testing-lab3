@@ -62,8 +62,8 @@ public class RegistrationTest {
         WebElement emailInput = driver.findElement(By.xpath("/html/body/main/div/div[2]/form/table/tbody/tr/td/input"));
         emailInput.sendKeys("callmepedro@yandex.ru");
 
-        WebElement agreement = driver.findElement(By.xpath("/html/body/main/div/div[2]/form/input[1]"));
-        Thread.sleep(500);
+        WebElement agreement = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("/html/body/main/div/div[2]/form/input[1]")));
         js.executeScript("arguments[0].click();", agreement);
 
         WebElement regBtn = driver.findElement(By.xpath("/html/body/main/div/div[2]/form/input[2]"));
